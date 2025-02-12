@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5e1e1;
+    background-color: #f7c8d6;
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,8 +21,8 @@ body {
 
 /* Estilo de la carta */
 .card {
-    background-color: #ffcccb;
-    border-radius: 15px;
+    background-color: #fcd3d8;
+    border-radius: 20px;
     padding: 20px;
     text-align: center;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@ body {
 }
 
 .heart {
-    font-size: 40px;
+    font-size: 50px;
     animation: heartbeat 1s infinite;
 }
 
@@ -48,7 +48,7 @@ body {
 .message {
     font-size: 1.5em;
     margin-top: 10px;
-    color: #d6006c;
+    color: #e60073;
     font-weight: bold;
 }
 
@@ -118,4 +118,23 @@ button {
 
 #confirm-btn:hover {
     background-color: #2f9d43;
+}
+
+/* Media Query para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+
+    .heart {
+        font-size: 40px;
+    }
+
+    .message {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 1em;
+    }
 }
