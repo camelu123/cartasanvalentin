@@ -1,48 +1,60 @@
-// Obtener elementos del DOM
-const acceptBtn = document.getElementById('accept-btn');
-const rejectBtn = document.getElementById('reject-btn');
-const popup = document.getElementById('popup');
-const confirmBtn = document.getElementById('confirm-btn');
-
-// Texto para los mensajes aterradores
-const rejectMessages = [
-    "¡Te dije que no hay vuelta atrás! ¡Has presionado 'No acepto'!",
-    "¡Cuidado! ¡Te quedan 30 minutos de vida!",
-    "¡Has desafiado el destino! ¡1 hora y se acabó!",
-    "¡Estás a punto de morir si no cambias de decisión!"
-];
-
-// Función para hacer que el botón 'No acepto' se mueva
-let rejectClicks = 0;
-rejectBtn.addEventListener('mouseenter', () => {
-    let randomX = Math.random() * 300; // Movimiento aleatorio horizontal
-    let randomY = Math.random() * 300; // Movimiento aleatorio vertical
-    rejectBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+document.getElementById('noBtn').addEventListener('click', function() {
+    // Mueve el botón dentro de los límites del recuadro
+    moveButton();
+    alert('¡Has presionado No! ¡Tienes una hora para vivir! Necesitas presionar "Sí" para sobrevivir.');
+    
+    // Mostrar un mensaje aterrador después de 5 segundos
+    setTimeout(() => {
+        alert('¡Tu tiempo se está agotando! No hay vuelta atrás...');
+    }, 5000);
 });
 
-rejectBtn.addEventListener('click', () => {
-    rejectClicks++;
-    if (rejectClicks < rejectMessages.length) {
-        alert(rejectMessages[rejectClicks]);
-    } else {
-        alert("¡Te queda poco tiempo! ¡Haz clic en 'Sí, acepto' para sobrevivir!");
-    }
+document.getElementById('yesBtn').addEventListener('click', function() {
+    document.getElementById('confirmationPopup').style.display = 'block';
 });
 
-// Evento cuando se presiona "Sí, acepto"
-acceptBtn.addEventListener('click', () => {
-    // Mostrar ventana emergente
-    popup.style.display = "flex";
+document.getElementById('finalYesBtn').addEventListener('click', function() {
+    alert('¡Gracias, Estrellita de Mar! Aquí tienes una poesía:');
+    alert('La belleza de tu ser, más allá del mar, / Refleja el amor en el cielo estelar. / En tus ojos, un mundo lleno de luz, / Tú, mi sol, mi guía, mi paz, mi cruz.');
+    document.getElementById('confirmationPopup').style.display = 'none';
 });
 
-// Evento cuando se presiona "No acepto" (para verificar que se debe presionar 'Sí acepto' para salvarse)
-rejectBtn.addEventListener('click', () => {
-    rejectBtn.innerText = "Sigue presionando... ¡Hazlo rápido!";
-    rejectBtn.style.animation = "shake 0.5s infinite";
-});
+// Función que mueve el botón a una posición aleatoria dentro del recuadro
+function moveButton() {
+    const button = document.getElementById('noBtn');
+    const card = document.querySelector('.card');
+    const cardRect = card.getBoundingClientRect();
+    
+    // Limitar el movimiento dentro del recuadro
+    const maxWidth = cardRect.width - button.offsetWidth;
+    const maxHeight = cardRect.height - button.offsetHeight;
 
-// Confirmar la acción en el popup
-confirmBtn.addEventListener('click', () => {
-    alert("Gracias por aceptar, ¡serás feliz por siempre! 💖");
-    popup.style.display = "none"; // Cierra el popup
+    // Generar nuevas posiciones dentro de los límites
+    const randomX = Math.random() * maxWidth;
+    const randomY = Math.random() * maxHeight;
+    
+    // Establecer nuevas posiciones del botón
+    button.style.left = randomX + 'px';
+    button.style.top = randomY + 'px';
+    
+    // Mensajes aterradores o graciosos cada vez que se acerque
+    const randomMessage = getRandomMessage();
+    alert(randomMessage);
+}
+
+// Función para generar un mensaje aleatorio
+function getRandomMessage() {
+    const messages = [
+        '¡Cuidado, tu tiempo se está agotando! ¡Presiona "Sí" para sobrevivir!',
+        '¡Has presionado "No"! ¡Ahora, ¡a correr!',
+        '¡Corre! La cuenta atrás ha comenzado... ¿Te atreves?',
+        '¡Has jugado con fuego! ¿No tienes miedo?'
+    ];
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
+}
+
+// Detecta cuando el puntero se acerca al botón "No acepto"
+document.getElementById('noBtn').addEventListener('mousemove', function() {
+    moveButton();
 });

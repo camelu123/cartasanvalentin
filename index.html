@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Carta de San Valentín</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="heart">💖</div>
-            <div class="message">
-                <h1>¡Feliz San Valentín!</h1>
-                <p>¿Aceptas mi amor?</p>
-            </div>
-            <div class="buttons">
-                <button class="accept-btn" id="accept-btn">Sí, acepto</button>
-                <button class="reject-btn" id="reject-btn">No acepto</button>
-            </div>
+    <div class="card">
+        <h1 class="title">Estrellita de Mar, ¿me acompañas el 14 de febrero?</h1>
+        <p class="message">Lamento mucho lo sucedido antes, pero quiero mejorar. Prometo siempre intentarlo contigo. 💖</p>
+        <div class="buttons">
+            <button id="noBtn" class="btn no">No acepto</button>
+            <button id="yesBtn" class="btn yes">Sí, acepto</button>
         </div>
     </div>
 
-    <!-- Ventana emergente -->
-    <div class="popup" id="popup">
+    <!-- Ventana emergente de confirmación -->
+    <div id="confirmationPopup" class="popup">
         <div class="popup-content">
-            <p>¿Estás segura? No hay vuelta atrás... ¿Aceptas?</p>
-            <button id="confirm-btn">Sí, acepto</button>
+            <p>¿Estás segura? No hay vuelta atrás...</p>
+            <button id="finalYesBtn" class="btn">Sí, acepto</button>
         </div>
     </div>
 
